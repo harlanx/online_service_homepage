@@ -1,6 +1,6 @@
 # online_service_homepage
 
-An adaptive online service homepage website layout for different screen sizes created using Dart with Flutter SDK for Web (Hummingbird).
+An adaptive online service homepage website layout themed for a Community with interesting stories to tell. The website is created using Dart with Flutter SDK for Web (Hummingbird).
 
 Disclaimer: All names were fictional and the images of people and other assets was used for educational purposes only.
 

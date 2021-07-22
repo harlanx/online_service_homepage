@@ -100,11 +100,14 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           ),
-                          if (_size.width > 1575 || _size.width < 1270)
-                            ConstrainedBox(
+                          Visibility(
+                            visible: _size.width > 1575 || _size.width < 1270,
+                            maintainState: true,
+                            child: ConstrainedBox(
                               constraints: BoxConstraints(maxHeight: 650, maxWidth: 300),
                               child: SignUpForm(),
                             ),
+                          ),
                         ],
                       ),
                       Column(

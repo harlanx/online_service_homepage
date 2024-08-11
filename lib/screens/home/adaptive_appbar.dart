@@ -2,23 +2,25 @@ part of '../../screens/home.dart';
 
 class AdaptiveAppbar extends StatelessWidget {
   final double screenWidth;
-  const AdaptiveAppbar({Key? key, required this.screenWidth}) : super(key: key);
+  const AdaptiveAppbar({super.key, required this.screenWidth});
 
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 80),
+      constraints: const BoxConstraints(minHeight: 80),
       child: DefaultTextStyle(
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontFamily: 'Poppins',
         ),
         child: Container(
           width: double.infinity,
           color: Colors.black26,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Wrap(
-            alignment: screenWidth >= 1240 ? WrapAlignment.spaceBetween : WrapAlignment.center,
+            alignment: screenWidth >= 1240
+                ? WrapAlignment.spaceBetween
+                : WrapAlignment.center,
             direction: Axis.horizontal,
             runAlignment: WrapAlignment.center,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -27,7 +29,7 @@ class AdaptiveAppbar extends StatelessWidget {
                 onTap: () {},
                 child: Container(
                   height: 80,
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -36,8 +38,8 @@ class AdaptiveAppbar extends StatelessWidget {
                         filterQuality: FilterQuality.medium,
                         fit: BoxFit.fitHeight,
                       ),
-                      SizedBox(width: 10),
-                      Text(
+                      const SizedBox(width: 10),
+                      const Text(
                         'HARMONY',
                         style: TextStyle(
                           fontFamily: 'Monoton',
@@ -49,13 +51,11 @@ class AdaptiveAppbar extends StatelessWidget {
                 ),
               ),
               ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: 880,
-                ),
+                constraints: const BoxConstraints(maxWidth: 880),
                 child: Container(
                   height: 80,
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Wrap(
                     runAlignment: WrapAlignment.center,
                     alignment: WrapAlignment.spaceBetween,
@@ -69,14 +69,18 @@ class AdaptiveAppbar extends StatelessWidget {
                       menuLabelButton('Contact', ''),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
-                          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                          primary: Color(0xFF7aa9b9),
-                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7)),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 30,
+                          ),
+                          backgroundColor: const Color(0xFF7aa9b9),
+                          foregroundColor: Colors.white,
                           shadowColor: Colors.black,
                           elevation: 5,
                         ),
-                        child: Text(
+                        child: const Text(
                           'Sign In',
                           style: TextStyle(
                             fontSize: 22,
@@ -100,10 +104,10 @@ class AdaptiveAppbar extends StatelessWidget {
     return InkWell(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.w500,
         ),

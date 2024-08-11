@@ -1,13 +1,13 @@
 part of '../../screens/home.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({Key? key}) : super(key: key);
+  const SignUpForm({super.key});
 
   @override
-  _SignUpFormState createState() => _SignUpFormState();
+  SignUpFormState createState() => SignUpFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class SignUpFormState extends State<SignUpForm> {
   bool _obscurePass = true;
 
   @override
@@ -17,7 +17,7 @@ class _SignUpFormState extends State<SignUpForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SelectableText(
+        const SelectableText(
           'Need an account?',
           style: TextStyle(
             fontSize: 30,
@@ -25,12 +25,12 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
         ),
         Neumorphic(
-          style: NeumorphicStyle(
+          style: const NeumorphicStyle(
             color: Colors.white,
             depth: -3.0,
             intensity: 1.3,
           ),
-          child: TextField(
+          child: const TextField(
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               hintText: 'Enter your email address',
@@ -40,9 +40,9 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Neumorphic(
-          style: NeumorphicStyle(
+          style: const NeumorphicStyle(
             color: Colors.white,
             depth: -3.0,
             intensity: 1.3,
@@ -52,9 +52,9 @@ class _SignUpFormState extends State<SignUpForm> {
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               hintText: 'Enter your password',
-              contentPadding: EdgeInsets.all(5.0),
+              contentPadding: const EdgeInsets.all(5.0),
               suffixIcon: IconButton(
-                icon: Icon(Icons.remove_red_eye_rounded),
+                icon: const Icon(Icons.remove_red_eye_rounded),
                 onPressed: () {
                   setState(() {
                     _obscurePass = !_obscurePass;
@@ -65,14 +65,14 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Neumorphic(
-          style: NeumorphicStyle(
+          style: const NeumorphicStyle(
             color: Colors.white,
             depth: -3.0,
             intensity: 1.3,
           ),
-          child: TextField(
+          child: const TextField(
             obscureText: true,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
@@ -83,13 +83,13 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF7aa9b9),
-            onPrimary: Colors.white,
+            backgroundColor: const Color(0xFF7aa9b9),
+            foregroundColor: Colors.white,
           ),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.history_edu_rounded),
@@ -99,7 +99,7 @@ class _SignUpFormState extends State<SignUpForm> {
           onPressed: () {},
         ),
         Container(
-          margin: EdgeInsets.symmetric(vertical: 20.0),
+          margin: const EdgeInsets.symmetric(vertical: 20.0),
           child: Row(
             children: [
               Expanded(
@@ -108,8 +108,8 @@ class _SignUpFormState extends State<SignUpForm> {
                   color: Colors.grey.shade400,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.0),
                 child: SelectableText(
                   'OR',
                   style: TextStyle(
@@ -130,29 +130,30 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF4267B2),
-            onPrimary: Colors.white,
+            backgroundColor: const Color(0xFF4267B2),
+            foregroundColor: Colors.white,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0, right: 5.0),
+                padding:
+                    const EdgeInsets.only(top: 5.0, bottom: 5.0, right: 5.0),
                 child: Image.asset(
                   'assets/icons/facebook.png',
                   height: 30,
                 ),
               ),
-              Text('Sign up using Facebook'),
+              const Text('Sign up using Facebook'),
             ],
           ),
           onPressed: () {},
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF4285F4),
-            onPrimary: Colors.white,
+            backgroundColor: const Color(0xFF4285F4),
+            foregroundColor: Colors.white,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -160,34 +161,36 @@ class _SignUpFormState extends State<SignUpForm> {
               Container(
                 color: Colors.white,
                 height: 30,
-                margin: const EdgeInsets.only(top: 5.0, bottom: 5.0, right: 5.0),
-                padding: EdgeInsets.all(2.5),
+                margin:
+                    const EdgeInsets.only(top: 5.0, bottom: 5.0, right: 5.0),
+                padding: const EdgeInsets.all(2.5),
                 child: Image.asset(
                   'assets/icons/google.png',
                 ),
               ),
-              Text('Sign up using Google'),
+              const Text('Sign up using Google'),
             ],
           ),
           onPressed: () {},
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF737373),
-            onPrimary: Colors.white,
+            backgroundColor: const Color(0xFF737373),
+            foregroundColor: Colors.white,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0, right: 5.0),
+                padding:
+                    const EdgeInsets.only(top: 5.0, bottom: 5.0, right: 5.0),
                 child: Image.asset(
                   'assets/icons/microsoft.png',
                   height: 30,
                 ),
               ),
-              Text('Sign up using Microsoft'),
+              const Text('Sign up using Microsoft'),
             ],
           ),
           onPressed: () {},

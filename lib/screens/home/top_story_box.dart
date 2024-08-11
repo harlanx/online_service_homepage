@@ -3,9 +3,9 @@ part of '../../screens/home.dart';
 class TopStoryBox extends StatelessWidget {
   final Story story;
   const TopStoryBox({
-    Key? key,
+    super.key,
     required this.story,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class TopStoryBox extends StatelessWidget {
                           filterQuality: FilterQuality.high,
                         ),
                         Align(
-                          alignment: Alignment(0, 1.010),
+                          alignment: const Alignment(0, 1.010),
                           child: ClipRect(
                             clipBehavior: Clip.antiAlias,
                             child: FractionallySizedBox(
@@ -63,7 +63,7 @@ class TopStoryBox extends StatelessWidget {
                 ],
               ),
               DefaultTextStyle(
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Poppins',
                   color: Colors.white,
                 ),
@@ -80,10 +80,11 @@ class TopStoryBox extends StatelessWidget {
                         FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 5),
                             child: SelectableText(
                               '“${story.title}”',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w500,
                                 shadows: [
@@ -104,22 +105,33 @@ class TopStoryBox extends StatelessWidget {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 5.0),
                             child: LayoutBuilder(
                               builder: (context, constraints) {
                                 // This is a simple workaround that dynamically changes maxLines to render ellipsis when
                                 // clipping an overflow. For a cleaner code maybe use AutoSizeText package but since this is
                                 // just a sample/demo I don't want to use too much additional packages.
-                                final style =
-                                    Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 17, color: Colors.white, fontWeight: FontWeight.w400);
+                                final style = Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        fontSize: 17,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400);
                                 final Size size = (TextPainter(
-                                        text: TextSpan(text: story.content, style: style),
+                                        text: TextSpan(
+                                            text: story.content, style: style),
                                         maxLines: 1,
-                                        textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                                        textScaler:
+                                            MediaQuery.of(context).textScaler,
                                         textDirection: TextDirection.ltr)
                                       ..layout())
                                     .size;
-                                final maxLines = math.max(1, (constraints.biggest.height / size.height).floor());
+                                final maxLines = math.max(
+                                    1,
+                                    (constraints.biggest.height / size.height)
+                                        .floor());
                                 return Text(
                                   story.content,
                                   softWrap: true,
@@ -147,24 +159,28 @@ class TopStoryBox extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SelectableText('Story of a ${story.activity}.', style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),),
-                TextButton(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text('Read More >>'),
+                SelectableText(
+                  'Story of a ${story.activity}.',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                   ),
+                ),
+                TextButton(
                   style: TextButton.styleFrom(
-                    minimumSize: Size(150, 40),
-                    textStyle: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Poppins'),
+                    minimumSize: const Size(150, 40),
+                    textStyle: const TextStyle(
+                        fontWeight: FontWeight.w400, fontFamily: 'Poppins'),
                     backgroundColor: Colors.black,
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                     padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text('Read More >>'),
                   ),
                   onPressed: () {},
                 ),

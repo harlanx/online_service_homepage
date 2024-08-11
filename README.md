@@ -1,16 +1,16 @@
 # online_service_homepage
 
-A new Flutter project.
+A responsive and adaptive online service homepage website layout themed for a Community with interesting stories to tell. The website is created using Dart with Flutter SDK for Web (Hummingbird).
 
-## Getting Started
+Disclaimer: All names were fictional and the images of people and other assets was used for educational purposes only.
 
-This project is a starting point for a Flutter application.
+## Previews
 
-A few resources to get you started if this is your first Flutter project:
+https://user-images.githubusercontent.com/78299538/126614139-c1616f65-413d-468e-ba0c-004217f4fbb4.mp4
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Desktop
+[<img src="docs/desktop_preview.jpeg" width="600"/>](docs/desktop_preview.jpeg)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Mobile
+[<img src="docs/mobile_preview.jpg" width="500"/>](docs/mobile_preview.jpg)
+

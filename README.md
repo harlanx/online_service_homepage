@@ -2,7 +2,7 @@
 
 Visit the working preview on [Harmony](https://harlanx.github.io/online_service_homepage/) deployed via Github Pages.
 
-A responsive and adaptive online service homepage website layout themed for a Community with interesting stories to tell. The website is created using Dart with Flutter SDK for Web (Hummingbird).
+A responsive and adaptive online forum homepage website layout themed for a Community with interesting stories to tell. The website is created using Dart with Flutter SDK for Web (Hummingbird).
 
 ## Previews
 

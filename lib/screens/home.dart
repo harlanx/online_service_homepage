@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:online_service_homepage/data/data.dart';
@@ -7,6 +6,7 @@ part 'home/adaptive_appbar.dart';
 part 'home/sign_up_form.dart';
 part 'home/top_story_box.dart';
 part 'home/featured_story_box.dart';
+part 'home/share_story_label.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -30,6 +30,7 @@ class HomeState extends State<Home> {
         ),
         child: Stack(
           fit: StackFit.expand,
+          alignment: Alignment.topCenter,
           children: [
             Align(
               alignment: Alignment.bottomCenter,
@@ -39,6 +40,7 @@ class HomeState extends State<Home> {
               ),
             ),
             ListView(
+              shrinkWrap: true,
               children: [
                 AdaptiveAppbar(screenWidth: size.width),
                 Padding(
@@ -46,75 +48,34 @@ class HomeState extends State<Home> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Wrap(
-                        direction: Axis.horizontal,
-                        alignment: size.width > 1575
-                            ? WrapAlignment.spaceBetween
-                            : WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        runSpacing: 30,
-                        children: [
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(
-                                maxHeight: 650, maxWidth: 1000, minHeight: 410),
-                            child: AspectRatio(
-                              aspectRatio: 1.2 / 1,
-                              child: TopStoryBox(
-                                story: sampleTopStory,
-                              ),
-                            ),
-                          ),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(
-                                maxWidth: 600, minWidth: 400),
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade600,
-                                    offset: const Offset(-3, 3),
-                                  ),
-                                ],
-                              ),
-                              child: Material(
-                                color: Colors.white,
-                                child: InkWell(
-                                  child: Ink(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 5),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.grey,
-                                        width: 1,
-                                      ),
-                                    ),
-                                    child: Text(
-                                      'What\'s your story?\nShare it with us today.',
-                                      style: TextStyle(
-                                        color: Colors.grey.shade700,
-                                        height: 1.2,
-                                        fontSize: 34,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                  onTap: () {},
-                                ),
-                              ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: size.width > 1575 || size.width < 1270,
-                            maintainState: true,
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                  maxHeight: 650, maxWidth: 300),
-                              child: const SignUpForm(),
-                            ),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 30),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            final w = constraints.maxWidth;
+                            WrapAlignment wrapAlignment;
+                            double runSpacing;
+                            if (w > 1600) {
+                              runSpacing = 30;
+                              wrapAlignment = WrapAlignment.spaceBetween;
+                            } else {
+                              runSpacing = 10;
+                              wrapAlignment = WrapAlignment.center;
+                            }
+                            return Wrap(
+                              direction: Axis.horizontal,
+                              alignment: wrapAlignment,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              spacing: 20,
+                              runSpacing: runSpacing,
+                              children: [
+                                TopStoryBox(story: sampleTopStory),
+                                const ShareStoryLabel(),
+                                const SignUpForm(),
+                              ],
+                            );
+                          },
+                        ),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,

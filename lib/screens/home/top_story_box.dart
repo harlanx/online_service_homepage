@@ -9,161 +9,156 @@ class TopStoryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: Stack(
-            fit: StackFit.expand,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 800),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Stack(
+            alignment: Alignment.bottomCenter,
             children: [
-              Column(
-                children: [
-                  Expanded(
-                    flex: 85,
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Image.asset(
+              // Whole Image
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Flexible(
+                        child: Image.asset(
                           story.image,
-                          fit: BoxFit.contain,
+                          alignment: Alignment.bottomCenter,
+                          fit: BoxFit.cover,
                           filterQuality: FilterQuality.high,
                         ),
-                        Align(
-                          alignment: const Alignment(0, 1.010),
-                          child: ClipRect(
-                            clipBehavior: Clip.antiAlias,
-                            child: FractionallySizedBox(
-                              heightFactor: 0.25,
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Colors.black,
-                                        Colors.black.withOpacity(0.1),
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
+                      ),
+                      SizedBox(
+                        height: constraints.maxWidth * 0.15,
+                      ),
+                    ],
+                  );
+                },
+              ),
+
+              AspectRatio(
+                aspectRatio: 8 / 2.5,
+                child: ClipRect(
+                  clipBehavior: Clip.hardEdge,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.black,
+                            Colors.black.withOpacity(0.1),
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          stops: const <double>[0.5, 0.8],
+                        ),
+                      ),
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                        ),
+                        child: LayoutBuilder(
+                          builder: (context, constr) {
+                            return Container(
+                              constraints: BoxConstraints(
+                                  maxWidth: constr.maxWidth * 0.95),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: SelectableText(
+                                      '“${story.title}”',
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w500,
+                                        shadows: [
+                                          Shadow(
+                                            color: Colors.black,
+                                            blurRadius: 3,
+                                            offset: Offset(0, 2),
+                                          ),
+                                          Shadow(
+                                            color: Colors.black,
+                                            blurRadius: 2,
+                                            offset: Offset(0, 2),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 15,
-                    child: Container(
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-              DefaultTextStyle(
-                style: const TextStyle(
-                  fontFamily: 'Poppins',
-                  color: Colors.white,
-                ),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: FractionallySizedBox(
-                    heightFactor: 0.32,
-                    widthFactor: 1.0,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 5),
-                            child: SelectableText(
-                              '“${story.title}”',
-                              style: const TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w500,
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.black,
-                                    blurRadius: 3,
-                                    offset: Offset(0, 2),
+                                  ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      maxHeight: constr.maxWidth * 0.03,
+                                    ),
+                                    child: const SizedBox.expand(),
                                   ),
-                                  Shadow(
-                                    color: Colors.black,
-                                    blurRadius: 2,
-                                    offset: Offset(0, 2),
+                                  Flexible(
+                                    child: LayoutBuilder(
+                                      builder: (context, constraints) {
+                                        final w = constraints.maxWidth;
+                                        double scale;
+                                        if (w > 600) {
+                                          scale = 1.3;
+                                        } else if (w > 350 && w <= 600) {
+                                          scale = 1.1;
+                                        } else if (w > 250 && w <= 350) {
+                                          scale = 0.9;
+                                        } else {
+                                          scale = 0.6;
+                                        }
+                                        return SelectableText(
+                                          story.content,
+                                          style: TextStyle(
+                                            overflow: TextOverflow.ellipsis,
+                                            height: scale,
+                                          ),
+                                          //softWrap: true,
+                                          textScaler: TextScaler.linear(scale),
+                                          maxLines: 4,
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ),
+                            );
+                          },
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5.0),
-                            child: LayoutBuilder(
-                              builder: (context, constraints) {
-                                // This is a simple workaround that dynamically changes maxLines to render ellipsis when
-                                // clipping an overflow. For a cleaner code maybe use AutoSizeText package but since this is
-                                // just a sample/demo I don't want to use too much additional packages.
-                                final style = Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .copyWith(
-                                        fontSize: 17,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w400);
-                                final Size size = (TextPainter(
-                                        text: TextSpan(
-                                            text: story.content, style: style),
-                                        maxLines: 1,
-                                        textScaler:
-                                            MediaQuery.of(context).textScaler,
-                                        textDirection: TextDirection.ltr)
-                                      ..layout())
-                                    .size;
-                                final maxLines = math.max(
-                                    1,
-                                    (constraints.biggest.height / size.height)
-                                        .floor());
-                                return Text(
-                                  story.content,
-                                  softWrap: true,
-                                  maxLines: maxLines,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.start,
-                                  style: style,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
               children: [
-                SelectableText(
-                  'Story of a ${story.activity}.',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                FittedBox(
+                  fit: BoxFit.contain,
+                  child: SelectableText(
+                    'Story of a ${story.activity}.',
+                    style: const TextStyle(
+                      overflow: TextOverflow.fade,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    maxLines: 1,
                   ),
                 ),
                 TextButton(
@@ -187,8 +182,8 @@ class TopStoryBox extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
